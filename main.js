@@ -190,23 +190,25 @@ async function loadStoryDetail(rid) {
     }
 }
 
-// 同步按钮事件
-syncBtn.addEventListener("click", async () => {
-    syncBtn.disabled = true;
-    syncBtn.textContent = "同步中，请稍等...";
-    try {
-        const res = await fetch(`${API_BASE}/crawl`);
-        const text = await res.text();
-        alert(text);
-        // 同步新增帖子，清空旧缓存，强制重新获取真实总数
-        cachedTotal = null;
-        cacheExpire = 0;
-        // 同步完成回到第一页刷新
-        loadStories(1);
-    } catch (err) {
-        alert("同步失败：" + err.message);
-    } finally {
-        syncBtn.disabled = false;
-        syncBtn.textContent = "手动同步新故事";
-    }
-});
+// 同步按钮事件，增加判空，注释按钮也不会报错
+if (syncBtn) {
+    syncBtn.addEventListener("click", async () => {
+        syncBtn.disabled = true;
+        syncBtn.textContent = "同步中，请稍等...";
+        try {
+            const res = await fetch(`${API_BASE}/crawl`);
+            const text = await res.text();
+            alert(text);
+            // 同步新增帖子，清空旧缓存，强制重新获取真实总数
+            cachedTotal = null;
+            cacheExpire = 0;
+            // 同步完成回到第一页刷新
+            loadStories(1);
+        } catch (err) {
+            alert("同步失败：" + err.message);
+        } finally {
+            syncBtn.disabled = false;
+            syncBtn.textContent = "手动同步新故事";
+        }
+    });
+}
