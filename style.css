@@ -7,6 +7,9 @@
     --meta: #666666;
     --border: #e2e5ec;
 }
+* {
+    box-sizing: border-box;
+}
 body {
     background-color: var(--bg);
     color: var(--text);
@@ -122,6 +125,7 @@ a {
 /* 分页栏 */
 .page-bar {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
     margin: 40px 0;
@@ -178,4 +182,53 @@ a {
     margin: 0 0 1em 0;
     padding: 0;
     text-indent: 0;
+}
+
+/* ========== 手机端响应式适配（完全兼容你现有配色与布局） ========== */
+@media screen and (max-width: 640px) {
+    .container {
+        padding: 24px 14px;
+    }
+    header {
+        margin-bottom: 26px;
+    }
+    header h1 {
+        font-size: 1.7rem;
+    }
+    .story-card {
+        padding: 20px 16px;
+        margin-bottom: 14px;
+        border-radius: 10px;
+    }
+    .story-title {
+        font-size: 1.3rem;
+    }
+    .card-desc {
+        font-size: 0.98rem;
+        -webkit-line-clamp: 5;
+    }
+    .card-bottom {
+        flex-wrap: wrap;
+    }
+    /* 分页按钮手机自适应均分宽度，不会挤在一起 */
+    .page-bar {
+        gap: 8px;
+        margin: 28px 0;
+    }
+    .page-btn {
+        flex: 1;
+        min-width: 65px;
+        padding: 8px 4px;
+        font-size: 14px;
+    }
+    /* 阅读页手机适配 */
+    #readTitle {
+        font-size: 1.4rem;
+    }
+    .read-content {
+        font-size: 1.02rem;
+    }
+    footer {
+        margin-top: 40px;
+    }
 }
