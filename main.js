@@ -134,6 +134,8 @@ function renderPageBar(totalPage, now) {
     pageHtml += `<span style="padding:0 12px;">第 ${now} / ${totalPage} 页</span>`;
     // 下一页
     pageHtml += `<button class="page-btn" ${now >= totalPage ? "disabled" : ""} data-p="${now + 1}">下一页</button>`;
+	// 尾页（跳转到最后一页 totalPage）
+    pageHtml += `<button class="page-btn" ${now >= totalPage ? "disabled" : ""} data-p="${totalPage}">尾页</button>`;
     pageBar.innerHTML = pageHtml;
 
     // 分页点击事件
