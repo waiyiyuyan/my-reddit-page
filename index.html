@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>r/nosleep 恐怖故事档案馆</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌙 r/nosleep 恐怖小说档案馆</h1>
+            <button class="btn-sync" id="syncBtn">手动同步新故事</button>
+        </header>
+
+        <!-- 列表首页视图 -->
+        <section id="listView">
+            <main id="listWrap">
+                <div class="loading">正在加载故事数据...</div>
+            </main>
+            <!-- 分页栏 -->
+            <div class="page-bar" id="pageBar"></div>
+        </section>
+
+        <section id="readView" class="hidden">
+			<div class="read-header">
+				<a href="#/list" class="back-btn">← 返回列表</a>
+				<h2 id="readTitle"></h2>
+				<div class="read-meta">
+					<span id="readAuthor"></span>
+					<span id="readTime"></span>
+					<a id="readOrigin" target="_blank">前往 Reddit 原帖</a>
+				</div>
+				
+			</div>
+			<!-- 英文原文 -->
+			<div class="read-content" id="readBody"></div>
+		</section>
+
+        <footer>
+            <p>© 🌲 永久档案馆</p>
+        </footer>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+</html>
