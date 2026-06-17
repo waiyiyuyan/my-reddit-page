@@ -1,5 +1,5 @@
 // 替换为你的worker域名，末尾不要斜杠
-const API_BASE = "https://reddit-spider.waiyiyuyan.workers.dev";
+const API_BASE = "apirdt.lovefree.de5.net";
 
 // 全局分页缓存总条数，5分钟有效期
 let cachedTotal = null;
