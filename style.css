@@ -150,18 +150,20 @@ a {
     vertical-align: middle;
 }
 .page-bar > span {
-    margin: 0 4px;
-    padding: 0 4px;
-    font-size: 14px;
+    margin: 0 6px;
+    padding: 0 6px;
+    font-size: 15px;
 }
+/* 桌面端放大按钮 */
 .page-btn {
-    margin: 0 3px;
-    padding: 5px 8px;
+    margin: 0 4px;
+    padding: 7px 12px;
     border: 1px solid var(--border);
     background: transparent;
     color: var(--text);
     border-radius: 4px;
     cursor: pointer;
+    font-size: 14px;
 }
 .page-btn.active {
     background: var(--accent);
@@ -173,7 +175,7 @@ a {
     cursor: not-allowed;
 }
 
-/* ========== 手机端响应式适配 ========== */
+/* ========== 手机端响应式适配（分页按钮加大） ========== */
 @media screen and (max-width: 640px) {
     .container {
         padding: 24px 14px;
@@ -203,14 +205,15 @@ a {
         margin: 28px 0;
         padding: 6px 2px;
     }
+    /* 手机分页按钮放大，方便手指点击 */
     .page-btn {
-        margin: 0 2px;
-        padding: 4px 5px;
-        font-size: 12px;
+        margin: 0 3px;
+        padding: 6px 8px;
+        font-size: 13px;
     }
     .page-bar > span {
-        margin: 0 2px;
-        font-size: 12px;
+        margin: 0 3px;
+        font-size: 13px;
     }
     #readTitle {
         font-size: 1.4rem;
