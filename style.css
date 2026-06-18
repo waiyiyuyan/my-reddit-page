@@ -126,17 +126,25 @@ a {
 .page-bar {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
     justify-content: center;
+    align-items: center;
     margin: 40px 0;
 }
+/* 中间页码文字，禁止挤压换行，最小宽度自适应 */
+.page-bar > span {
+    white-space: nowrap;
+    padding: 0 8px;
+    flex-shrink: 0;
+}
 .page-btn {
-    padding: 6px 14px;
+    padding: 6px 10px;
     border: 1px solid var(--border);
     background: transparent;
     color: var(--text);
     border-radius: 4px;
     cursor: pointer;
+    white-space: nowrap;
 }
 .page-btn.active {
     background: var(--accent);
@@ -146,42 +154,6 @@ a {
 .page-btn:disabled {
     opacity: 0.4;
     cursor: not-allowed;
-}
-/* 阅读页样式 */
-.read-header {
-    margin-bottom: 30px;
-}
-.back-btn {
-    display: inline-block;
-    margin-bottom: 16px;
-}
-#readTitle {
-    color: var(--title);
-    font-size: 1.8rem;
-    margin: 0 0 10px;
-}
-.read-meta {
-    color: var(--meta);
-    font-size: 0.9rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    padding-bottom: 12px;
-    border-bottom: 1px dashed #c8cad2;
-}
-.read-content {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    word-wrap: break-word;
-    padding: 10px 0;
-}
-.read-content br + br {
-    display: none;
-}
-.read-content p {
-    margin: 0 0 1em 0;
-    padding: 0;
-    text-indent: 0;
 }
 
 /* ========== 手机端响应式适配（完全兼容你现有配色与布局） ========== */
@@ -210,16 +182,15 @@ a {
     .card-bottom {
         flex-wrap: wrap;
     }
-    /* 分页按钮手机自适应均分宽度，不会挤在一起 */
+    /* 手机分页修复核心：取消所有按钮flex:1均分，改用紧凑自适应 */
     .page-bar {
-        gap: 8px;
+        gap: 6px;
         margin: 28px 0;
     }
     .page-btn {
-        flex: 1;
-        min-width: 65px;
-        padding: 8px 4px;
-        font-size: 14px;
+        /* 删除 flex:1、min-width 这两行，是换行元凶 */
+        padding: 7px 6px;
+        font-size: 13px;
     }
     /* 阅读页手机适配 */
     #readTitle {
