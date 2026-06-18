@@ -30,7 +30,7 @@ header {
 header h1 {
     color: var(--accent);
     margin-bottom: 10px;
-    font-size: 2.2rem;
+    font-size: 2rem;
 }
 header p {
     color: var(--meta);
