@@ -123,33 +123,45 @@ a {
     display: none !important;
 }
 
-/* 分页栏 核心修复 */
+/* ========== 分页栏 跨设备兼容修复核心 ========== */
 .page-bar {
     display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+    flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
     margin: 40px 0;
+    overflow-x: auto;
+    padding: 8px 4px;
+    gap: unset;
 }
-/* 修复文字高度不一致问题 */
-.page-bar > span {
-    white-space: nowrap;
-    padding: 0 4px;
+.page-bar::-webkit-scrollbar {
+    height: 3px;
+}
+.page-bar::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+.page-bar > span,
+.page-btn {
     flex-shrink: 0;
+    min-width: 0;
+    white-space: nowrap;
     line-height: 1;
-    font-size: 14px;
     vertical-align: middle;
 }
+.page-bar > span {
+    margin: 0 4px;
+    padding: 0 4px;
+    font-size: 14px;
+}
 .page-btn {
+    margin: 0 3px;
     padding: 5px 8px;
     border: 1px solid var(--border);
     background: transparent;
     color: var(--text);
     border-radius: 4px;
     cursor: pointer;
-    white-space: nowrap;
-    line-height: 1;
 }
 .page-btn.active {
     background: var(--accent);
@@ -187,18 +199,18 @@ a {
     .card-bottom {
         flex-wrap: wrap;
     }
-    /* 手机极致压缩分页尺寸，减少总宽度 */
     .page-bar {
-        gap: 4px;
         margin: 28px 0;
+        padding: 6px 2px;
     }
     .page-btn {
-        padding: 5px 4px;
+        margin: 0 2px;
+        padding: 4px 5px;
         font-size: 12px;
     }
     .page-bar > span {
+        margin: 0 2px;
         font-size: 12px;
-        padding: 0 2px;
     }
     #readTitle {
         font-size: 1.4rem;
@@ -211,7 +223,7 @@ a {
     }
 }
 
-/* 阅读页样式补充 */
+/* 阅读页样式 */
 .read-header {
     margin-bottom: 30px;
 }
