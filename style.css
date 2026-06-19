@@ -259,7 +259,7 @@ a {
 }
 .read-meta {
     color: var(--meta);
-    font-size: 0.9rem;
+    font-size: 0.78rem;
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
