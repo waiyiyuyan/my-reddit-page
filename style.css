@@ -1,3 +1,4 @@
+/* 默认浅色模式 */
 :root {
     --bg: #ffffff;
     --card-bg: #f7f8fa;
@@ -6,6 +7,19 @@
     --accent: #ff5e24;
     --meta: #666666;
     --border: #e2e5ec;
+}
+
+/* 系统/浏览器开启深色模式自动切换 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #121212;
+        --card-bg: #1e1e1e;
+        --text: #e8e8ed;
+        --title: #f5f5f7;
+        --accent: #ff7a49;
+        --meta: #a0a0b0;
+        --border: #333640;
+    }
 }
 * {
     box-sizing: border-box;
