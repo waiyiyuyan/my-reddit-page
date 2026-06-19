@@ -25,14 +25,16 @@
 
         <section id="readView" class="hidden">
 			<div class="read-header">
-				<a href="#/list" class="back-btn">← 返回列表</a>
+				<!-- 顶部行：返回按钮 + 右侧原帖链接 -->
+				<div class="read-top-bar">
+					<a href="#/list" class="back-btn">← 返回列表</a>
+					<a id="readOrigin" target="_blank">前往 Reddit 原帖</a>
+				</div>
 				<h2 id="readTitle"></h2>
 				<div class="read-meta">
 					<span id="readAuthor"></span>
 					<span id="readTime"></span>
-					<a id="readOrigin" target="_blank">前往 Reddit 原帖</a>
 				</div>
-				
 			</div>
 			<!-- 英文原文 -->
 			<div class="read-content" id="readBody"></div>
