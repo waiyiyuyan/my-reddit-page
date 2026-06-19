@@ -246,13 +246,13 @@ a {
         gap: 8px;
         padding-left: 4px;
         padding-right: 4px;
-        padding-bottom: 4px;
+        padding-bottom: 3px;
     }
 }
 
-/* 阅读页样式 */
+/* 阅读页样式【完整版修改】 */
 .read-header {
-    margin-bottom: 30px;
+    margin-bottom: 8px; /* 大幅减少头部整体到底文的距离，解决分割线离正文太远 */
 }
 .read-top-bar {
     display: flex;
@@ -262,37 +262,37 @@ a {
     margin-bottom: 16px;
     flex-wrap: wrap;
     gap: 8px;
-    padding: 0 6px; /* 左右留白，原帖链接往左偏移，不贴死右边缘 */
+    padding: 0 10px; /* 左右加宽留白，原帖链接明显左移，不贴最右侧 */
 }
 .back-btn {
     display: inline-block;
 }
 #readOrigin {
-    font-size: 0.9rem; /* 字体保持不变，不缩小 */
+    font-size: 0.9rem;
     color: var(--accent);
     flex-shrink: 0;
 }
 #readTitle {
     color: var(--title);
     font-size: 1.6rem;
-    margin: 0 0 6px; /* 从10px改成6px，缩小标题和meta间距 */
+    margin: 0 0 4px; /* 缩小标题与meta间隙 */
 }
 .read-meta {
     color: var(--meta);
-    font-size: 0.78rem; /* meta字体不变 */
+    font-size: 0.78rem;
     display: flex;
     gap: 16px;
-    padding-bottom: 6px; /* 从12px改成6px，分割线下留白收窄 */
+    padding-bottom: 3px; /* 分割线下空白压到最小 */
     border-bottom: 1px dashed var(--border);
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .read-content {
-    font-size: 1rem; /* 正文字号不变 */
+    font-size: 1rem;
     line-height: 1.5;
     word-wrap: break-word;
     word-break: break-all;
-    padding: 10px 6px; /* 正文左右对齐上方留白，视觉统一 */
+    padding: 0 10px; /* 去掉顶部padding，紧贴分割线下方 */
 }
 .read-content br + br {
     display: none;
