@@ -242,9 +242,15 @@ a {
 .read-header {
     margin-bottom: 30px;
 }
+/* 新增：顶部左右布局容器 */
+.read-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
 .back-btn {
     display: inline-block;
-    margin-bottom: 16px;
 }
 #readTitle {
     color: var(--title);
