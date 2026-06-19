@@ -231,10 +231,10 @@ a {
         font-size: 13px;
     }
     #readTitle {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
     .read-content {
-        font-size: 1.02rem;
+        font-size: 0.95rem;
     }
 }
 
@@ -248,7 +248,7 @@ a {
 }
 #readTitle {
     color: var(--title);
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin: 0 0 10px;
 }
 .read-meta {
@@ -261,8 +261,8 @@ a {
     border-bottom: 1px dashed var(--border);
 }
 .read-content {
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.5;
     word-wrap: break-word;
     word-break: break-all;
     padding: 10px 0;
