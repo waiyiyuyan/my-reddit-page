@@ -12,6 +12,17 @@ const listWrap = document.getElementById("listWrap");
 const pageBar = document.getElementById("pageBar");
 const syncBtn = document.getElementById("syncBtn");
 
+// 新增时间格式化函数
+function formatTimeNoSecond(dateStr) {
+  const d = new Date(dateStr);
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  const hour = String(d.getHours()).padStart(2, "0");
+  const minute = String(d.getMinutes()).padStart(2, "0");
+  return `${year}/${month}/${day} ${hour}:${minute}`;
+}
+
 
 // 阅读页DOM
 const readTitle = document.getElementById("readTitle");
@@ -92,7 +103,8 @@ async function loadStories(page = 1) {
         // 渲染卡片列表
         let html = "";
         list.forEach(story => {
-            const time = new Date(story.created_at).toLocaleString("zh-CN");
+            // 原：const time = new Date(story.created_at).toLocaleString("zh-CN");
+			const time = formatTimeNoSecond(story.created_at);
             // 摘要截断350字符
             let desc = story.body
                 .replace(/&#39;/g, "'")
@@ -176,7 +188,8 @@ async function loadStoryDetail(rid) {
         // 填充阅读页
         readTitle.textContent = story.title;
         readAuthor.textContent = `作者：${story.author}`;
-        readTime.textContent = `归档时间：${new Date(story.created_at).toLocaleString("zh-CN")}`;
+        // 原：readTime.textContent = `归档时间：${new Date(story.created_at).toLocaleString("zh-CN")}`;
+		readTime.textContent = `归档时间：${formatTimeNoSecond(story.created_at)}`;
         readOrigin.href = story.url;
         // 按双换行分割段落
 		const paragraphs = fullText.split(/\n\n/).filter(p => p.trim() !== "");
