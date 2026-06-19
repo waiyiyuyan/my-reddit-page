@@ -126,14 +126,6 @@ header p {
 }
 /* ====================================== */
 
-footer {
-    text-align: center;
-    color: var(--meta);
-    font-size: 0.85rem;
-    margin-top: 60px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border);
-}
 a {
     color: var(--accent);
     text-decoration: none;
@@ -243,9 +235,6 @@ a {
     }
     .read-content {
         font-size: 1.02rem;
-    }
-    footer {
-        margin-top: 40px;
     }
 }
 
