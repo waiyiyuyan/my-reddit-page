@@ -275,7 +275,7 @@ a {
 #readTitle {
     color: var(--title);
     font-size: 1.6rem;
-    margin: 0 0 4px; /* 缩小标题与meta间隙 */
+    margin: 0 0 6px; /* 缩小标题与meta间隙 */
 }
 .read-meta {
     color: var(--meta);
