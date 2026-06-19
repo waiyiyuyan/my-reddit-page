@@ -29,7 +29,7 @@ body {
     background-color: var(--bg);
     color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height: 1.8;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
 }
@@ -40,7 +40,7 @@ body {
 }
 header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 header h1 {
     color: var(--accent);
@@ -66,20 +66,28 @@ header p {
     opacity: 0.6;
     cursor: not-allowed;
 }
+
+/* ========== 紧凑型核心修改 ========== */
 .story-card {
-    background: var(--card-bg);
-    padding: 30px;
-    margin-bottom: 20px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    background: transparent;
+    padding: 14px 6px;
+    margin-bottom: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid var(--border);
 }
+/* 第一条顶部加分隔线 */
+.story-card:first-child {
+    border-top: 1px solid var(--border);
+}
+
 .story-title {
-    font-size: 1.6rem;
-    font-weight: 700;
+    font-size: 1.15rem;
+    font-weight: 600;
     color: var(--title);
     text-decoration: none;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
     display: block;
     line-height: 1.4;
 }
@@ -87,34 +95,37 @@ header p {
     color: var(--accent);
 }
 .meta {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     color: var(--meta);
-    margin-bottom: 12px;
-    border-bottom: 1px dashed var(--border);
-    padding-bottom: 12px;
+    margin-bottom: 6px;
+    border-bottom: none;
+    padding-bottom: 0;
 }
-/* 首页摘要截断 */
+/* 摘要3行，平衡密度和预览 */
 .card-desc {
-    font-size: 1.05rem;
+    font-size: 0.92rem;
     color: var(--text);
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 6;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+    margin-bottom: 8px;
 }
 .card-bottom {
-    margin-top: 16px;
+    margin-top: 0;
     display: flex;
-    gap: 12px;
+    gap: 8px;
 }
 .card-btn {
-    padding: 4px 10px;
+    padding: 2px 8px;
     border: 1px solid var(--accent);
     color: var(--accent);
-    border-radius: 4px;
-    font-size: 13px;
+    border-radius: 3px;
+    font-size: 12px;
     text-decoration: none;
 }
+/* ====================================== */
+
 footer {
     text-align: center;
     color: var(--meta);
@@ -144,7 +155,7 @@ a {
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    margin: 40px 0;
+    margin: 30px 0;
     overflow-x: auto;
     padding: 8px 4px;
     gap: unset;
@@ -190,7 +201,7 @@ a {
     cursor: not-allowed;
 }
 
-/* ========== 手机端响应式适配（分页按钮加大） ========== */
+/* ========== 手机端响应式适配 ========== */
 @media screen and (max-width: 640px) {
     .container {
         padding: 24px 14px;
@@ -202,16 +213,14 @@ a {
         font-size: 1.7rem;
     }
     .story-card {
-        padding: 20px 16px;
-        margin-bottom: 14px;
-        border-radius: 10px;
+        padding: 12px 4px;
     }
     .story-title {
-        font-size: 1.3rem;
+        font-size: 1.05rem;
     }
     .card-desc {
-        font-size: 0.98rem;
-        -webkit-line-clamp: 5;
+        font-size: 0.86rem;
+        -webkit-line-clamp: 3;
     }
     .card-bottom {
         flex-wrap: wrap;
@@ -220,7 +229,6 @@ a {
         margin: 28px 0;
         padding: 6px 2px;
     }
-    /* 手机分页按钮放大，方便手指点击 */
     .page-btn {
         margin: 0 3px;
         padding: 6px 8px;
@@ -241,7 +249,7 @@ a {
     }
 }
 
-/* 阅读页样式 */
+/* 阅读页样式（完全不变） */
 .read-header {
     margin-bottom: 30px;
 }
