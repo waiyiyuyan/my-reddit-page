@@ -1,49 +1,280 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- 适配深色模式原生滚动条、控件 -->
-    <meta name="color-scheme" content="light dark">
-    <title>r/nosleep 恐怖故事档案馆</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>🌙 nosleep 恐怖小说档案馆</h1>
-            <!-- <button class="btn-sync" id="syncBtn">手动同步新故事</button> -->
-        </header>
+/* 默认浅色主题 */
+:root {
+    --bg: #ffffff;
+    --card-bg: #f7f8fa;
+    --text: #2c2c36;
+    --title: #111111;
+    --accent: #ff5e24;
+    --meta: #666666;
+    --border: #e2e5ec;
+}
 
-        <!-- 列表首页视图 -->
-        <section id="listView">
-            <main id="listWrap">
-                <div class="loading">正在加载故事数据...</div>
-            </main>
-            <!-- 分页栏 -->
-            <div class="page-bar" id="pageBar"></div>
-        </section>
+/* 系统深色模式自动切换配色 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #121212;
+        --card-bg: #1e1e1e;
+        --text: #e8e8ed;
+        --title: #f5f5f7;
+        --accent: #ff7a49;
+        --meta: #a0a0b0;
+        --border: #333640;
+    }
+}
 
-        <section id="readView" class="hidden">
-			<div class="read-header">
-				<a href="#/list" class="back-btn">← 返回列表</a>
-				<h2 id="readTitle"></h2>
-				<div class="read-meta">
-					<span id="readAuthor"></span>
-					<span id="readTime"></span>
-					<a id="readOrigin" target="_blank">前往 Reddit 原帖</a>
-				</div>
-				
-			</div>
-			<!-- 英文原文 -->
-			<div class="read-content" id="readBody"></div>
-		</section>
+* {
+    box-sizing: border-box;
+}
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+header h1 {
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+header p {
+    color: var(--meta);
+    margin: 0;
+    font-size: 0.95rem;
+}
+.btn-sync {
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.btn-sync:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+.story-card {
+    background: var(--card-bg);
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+.story-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--title);
+    text-decoration: none;
+    margin-bottom: 12px;
+    display: block;
+    line-height: 1.4;
+}
+.story-title:hover {
+    color: var(--accent);
+}
+.meta {
+    font-size: 0.85rem;
+    color: var(--meta);
+    margin-bottom: 12px;
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 12px;
+}
+/* 首页摘要截断 */
+.card-desc {
+    font-size: 1.05rem;
+    color: var(--text);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+}
+.card-bottom {
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+}
+.card-btn {
+    padding: 4px 10px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 4px;
+    font-size: 13px;
+    text-decoration: none;
+}
+footer {
+    text-align: center;
+    color: var(--meta);
+    font-size: 0.85rem;
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+.loading, .empty-tip {
+    text-align: center;
+    font-size: 18px;
+    color: var(--meta);
+    padding: 60px 0;
+}
+/* 隐藏视图 */
+.hidden {
+    display: none !important;
+}
 
-        <footer>
-            <p>© 🌲 永久档案馆</p>
-        </footer>
-    </div>
+/* ========== 分页栏 跨设备兼容修复核心 ========== */
+.page-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+    overflow-x: auto;
+    padding: 8px 4px;
+    gap: unset;
+}
+.page-bar::-webkit-scrollbar {
+    height: 3px;
+}
+.page-bar::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+.page-bar > span,
+.page-btn {
+    flex-shrink: 0;
+    min-width: 0;
+    white-space: nowrap;
+    line-height: 1;
+    vertical-align: middle;
+}
+.page-bar > span {
+    margin: 0 6px;
+    padding: 0 6px;
+    font-size: 15px;
+}
+/* 桌面端放大按钮 */
+.page-btn {
+    margin: 0 4px;
+    padding: 7px 12px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.page-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+.page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
 
-    <script src="./main.js"></script>
-</body>
-</html>
+/* ========== 手机端响应式适配（分页按钮加大） ========== */
+@media screen and (max-width: 640px) {
+    .container {
+        padding: 24px 14px;
+    }
+    header {
+        margin-bottom: 26px;
+    }
+    header h1 {
+        font-size: 1.7rem;
+    }
+    .story-card {
+        padding: 20px 16px;
+        margin-bottom: 14px;
+        border-radius: 10px;
+    }
+    .story-title {
+        font-size: 1.3rem;
+    }
+    .card-desc {
+        font-size: 0.98rem;
+        -webkit-line-clamp: 5;
+    }
+    .card-bottom {
+        flex-wrap: wrap;
+    }
+    .page-bar {
+        margin: 28px 0;
+        padding: 6px 2px;
+    }
+    /* 手机分页按钮放大，方便手指点击 */
+    .page-btn {
+        margin: 0 3px;
+        padding: 6px 8px;
+        font-size: 13px;
+    }
+    .page-bar > span {
+        margin: 0 3px;
+        font-size: 13px;
+    }
+    #readTitle {
+        font-size: 1.4rem;
+    }
+    .read-content {
+        font-size: 1.02rem;
+    }
+    footer {
+        margin-top: 40px;
+    }
+}
+
+/* 阅读页样式 */
+.read-header {
+    margin-bottom: 30px;
+}
+.back-btn {
+    display: inline-block;
+    margin-bottom: 16px;
+}
+#readTitle {
+    color: var(--title);
+    font-size: 1.8rem;
+    margin: 0 0 10px;
+}
+.read-meta {
+    color: var(--meta);
+    font-size: 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--border);
+}
+.read-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    word-wrap: break-word;
+    word-break: break-all;
+    padding: 10px 0;
+}
+.read-content br + br {
+    display: none;
+}
+.read-content p {
+    margin: 0 0 1em 0;
+    padding: 0;
+    text-indent: 0;
+}
