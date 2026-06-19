@@ -239,20 +239,20 @@ a {
 
     .read-top-bar {
         gap: 6px;
-        padding: 0 4px;
+        padding: 0 10px;
     }
     .read-meta {
         font-size: 0.7rem;
         gap: 8px;
         padding-left: 4px;
         padding-right: 4px;
-        padding-bottom: 3px;
+        padding-bottom: 6px;
     }
 }
 
 /* 阅读页样式【完整版修改】 */
 .read-header {
-    margin-bottom: 8px; /* 大幅减少头部整体到底文的距离，解决分割线离正文太远 */
+    margin-bottom: 10px; /* 大幅减少头部整体到底文的距离，解决分割线离正文太远 */
 }
 .read-top-bar {
     display: flex;
@@ -282,7 +282,7 @@ a {
     font-size: 0.78rem;
     display: flex;
     gap: 16px;
-    padding-bottom: 3px; /* 分割线下空白压到最小 */
+    padding-bottom: 6px; /* 分割线下空白压到最小 */
     border-bottom: 1px dashed var(--border);
     padding-left: 10px;
     padding-right: 10px;
